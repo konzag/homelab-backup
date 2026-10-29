@@ -46,6 +46,14 @@ fresh; sed -i 's|Limited Use|limited|' "$tmp/s/privacy.html"
 expect_fail 'the Limited Use statement' 'privacy.html lacks: Limited Use'
 fresh; sed -i 's|gmail.readonly|gmail|' "$tmp/s/privacy.html"
 expect_fail 'the Gmail scope' 'privacy.html lacks: gmail.readonly'
+fresh; sed -i 's|calendar\.app\.created|calendar|g' "$tmp/s/privacy.html"
+expect_fail 'the Calendar scope' 'privacy.html lacks: calendar.app.created'
+fresh; sed -i 's|<h1>Homelab tools</h1>|<h1>Tools</h1>|' "$tmp/s/index.html"
+expect_fail 'the home page title' 'index.html lacks: <h1>Homelab tools</h1>'
+fresh; sed -i 's|family calendar|the app|gI' "$tmp/s/index.html"
+expect_fail 'Family calendar on the home page' 'index.html lacks: Family calendar'
+fresh; sed -i 's|homelab backup|the tool|gI' "$tmp/s/privacy.html"
+expect_fail 'Homelab backup in the policy' 'privacy.html lacks: Homelab backup'
 fresh; sed -i 's|https://myaccount.google.com/connections|http://myaccount.google.com/connections|' "$tmp/s/privacy.html"
 expect_fail 'a plain http link' 'privacy.html has a plain http link'
 fresh; sed -i '1s|.*|<html>|' "$tmp/s/index.html"

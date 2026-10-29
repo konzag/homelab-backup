@@ -1,12 +1,16 @@
 # homelab-backup
 
-Home page and privacy policy of **Homelab backup**, a private Google API client used by one person, its owner. It
-backs up the owner's own Gmail (read only) and keeps the copies encrypted, on the owner's own computers and in the
-owner's own Google Drive (only the files it creates).
+Home page and privacy policy of two private Google API clients of one family:
+
+- **Homelab backup**, used by one person, its owner: it backs up the owner's own Gmail (read only) and keeps the copies
+  encrypted, on the owner's own computers and in the owner's own Google Drive (only the files it creates).
+- **Family calendar** (since 29 October 2026), used by the owner and the owner's children: it writes each person's
+  reminders into a calendar it creates in that person's Google Calendar (scope calendar.app.created only).
 
 Why this repository exists: Google asks for a home page URL and a privacy policy URL before an External OAuth app
-can move from "Testing" to "In production", even when only one person uses it. In "Testing" every authorisation
-ends after 7 days, which would stop an unattended backup every week.
+can move from "Testing" to "In production", even when only one family uses it. In "Testing" every authorisation
+ends after 7 days, which would stop the unattended backup and the calendar sync every week. Both Google Cloud
+projects point at the same two pages.
 
 - Home page: https://konzag.github.io/homelab-backup/
 - Privacy policy: https://konzag.github.io/homelab-backup/privacy.html

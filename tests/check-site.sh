@@ -18,14 +18,14 @@ for p in "${pages[@]}"; do
 done
 [ -f "$dir/.nojekyll" ] || fail 'missing .nojekyll (GitHub Pages would run Jekyll on the site)'
 
-# the home page names the app and links to the policy; the policy links back
-has index.html '<h1>Homelab backup</h1>'
+# the home page names both tools and links to the policy; the policy names both and links back
+has index.html '<h1>Homelab tools</h1>'
+for t in 'Homelab backup' 'Family calendar'; do has index.html "$t"; has privacy.html "$t"; done
 has index.html 'href="privacy.html"'
-has privacy.html 'Homelab backup'
 has privacy.html 'href="./"'
 
 # what Google asks of the policy, and what the owner was promised
-for s in 'gmail.readonly' 'drive.file' 'Limited Use' 'https://developers.google.com/terms/api-services-user-data-policy' \
+for s in 'gmail.readonly' 'drive.file' 'calendar.app.created' 'Limited Use' 'https://developers.google.com/terms/api-services-user-data-policy' \
          'not shared' 'no cookies' 'https://myaccount.google.com/connections' 'Last updated:'; do
     has privacy.html "$s"
 done

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Homelab backup</title>
+<title>Homelab tools</title>
 <style>
 :root { color-scheme: light dark; --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --link: #0b57d0; --line: #d1d9e0; }
 @media (prefers-color-scheme: dark) { :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --link: #7cacf8; --line: #3d444d; } }
@@ -18,12 +18,12 @@ footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line
 </head>
 <body>
 <main>
-<h1>Homelab backup</h1>
-<p>Homelab backup is a private tool. It makes backup copies of its owner's own Google data and keeps them encrypted,
-on the owner's own computers and in the owner's own Google Drive. One person uses it, its owner; it is not offered
-to anyone else.</p>
+<h1>Homelab tools</h1>
+<p>Two private tools of one family use Google APIs. They are not offered to anyone else.</p>
 
-<h2>What it uses</h2>
+<h2>Homelab backup</h2>
+<p>Homelab backup makes backup copies of its owner's own Google data and keeps them encrypted, on the owner's own
+computers and in the owner's own Google Drive. One person uses it, its owner.</p>
 <ul>
 <li>Gmail, read only: to read the owner's messages so that a backup copy can be made.</li>
 <li>Google Drive, only the files this tool creates: to store the encrypted backup copies.</li>
@@ -31,14 +31,24 @@ to anyone else.</p>
 <p>It does not send email and does not change or delete anything in Gmail. In Google Drive it only creates, replaces
 and removes its own backup files. It shares nothing with anyone.</p>
 
-<h2>Privacy</h2>
-<p>Read the <a href="privacy.html">privacy policy</a>.</p>
+<h2>Family calendar</h2>
+<p>Family calendar is the reminder app of one family: a parent and the parent's children, each with their own Google
+account. Each person keeps short reminders in the app, and the app puts them as events into a calendar of its own in
+that person's Google Calendar, so that their phone reminds them.</p>
+<ul>
+<li>Google Calendar, only the calendars this app creates: it makes one secondary calendar in the person's account and
+adds, changes and removes its own events there.</li>
+</ul>
+<p>It cannot see the person's other calendars or events. It shares nothing with anyone.</p>
 
-<h2>Removing its access</h2>
-<p>Access can be removed at any time in the Google Account, under
+<h2>Privacy</h2>
+<p>Read the <a href="privacy.html">privacy policy</a> of both tools.</p>
+
+<h2>Removing access</h2>
+<p>Each tool's access can be removed at any time in the Google Account, under
 <a href="https://myaccount.google.com/connections">Third-party apps and services</a>.</p>
 
-<footer>Homelab backup. No cookies, no analytics, no ads.</footer>
+<footer>Homelab tools. No cookies, no analytics, no ads.</footer>
 </main>
 </body>
 </html>
