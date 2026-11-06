@@ -13,7 +13,8 @@ bad=0
 fresh() {
     rm -rf "$tmp/s"
     mkdir -p "$tmp/s"
-    cp "$root/index.html" "$root/privacy.html" "$root/README.md" "$root/.nojekyll" "$tmp/s/"
+    cp "$root/index.html" "$root/privacy.html" "$root/guesthouse.html" "$root/guesthouse-privacy.html" \
+       "$root/README.md" "$root/.nojekyll" "$tmp/s/"
 }
 expect_fail() { # $1 the planted fault, $2 the message it must produce
     local out
@@ -64,6 +65,20 @@ fresh; printf 'caf\xc3\xa9\n' >> "$tmp/s/README.md"
 expect_fail 'a non-ASCII byte' 'README.md holds a non-ASCII byte'
 fresh; rm "$tmp/s/privacy.html"
 expect_fail 'a missing page' 'missing privacy.html'
+fresh; rm "$tmp/s/guesthouse.html"
+expect_fail 'a missing guesthouse page' 'missing guesthouse.html'
+fresh; sed -i 's|href="guesthouse-privacy.html"|href="policy.html"|' "$tmp/s/guesthouse.html"
+expect_fail 'the link to the guesthouse policy' 'guesthouse.html lacks: href="guesthouse-privacy.html"'
+fresh; sed -i 's|gmail\.modify|gmail|g' "$tmp/s/guesthouse-privacy.html"
+expect_fail 'the Gmail modify scope' 'guesthouse-privacy.html lacks: gmail.modify'
+fresh; sed -i 's|never sends|may send|g' "$tmp/s/guesthouse-privacy.html"
+expect_fail 'the never-send promise' 'guesthouse-privacy.html lacks: never sends'
+fresh; sed -i 's|outside AI service|AI service|g' "$tmp/s/guesthouse-privacy.html"
+expect_fail 'the local-model promise' 'guesthouse-privacy.html lacks: outside AI service'
+fresh; sed -i 's|</main>|<p>gmail.readonly</p></main>|' "$tmp/s/guesthouse-privacy.html"
+expect_fail 'the backup scope in the guesthouse policy' 'guesthouse-privacy.html names gmail.readonly'
+fresh; sed -i 's|mail assistant|the tool|gI' "$tmp/s/guesthouse.html"
+expect_fail 'Mail assistant on the guesthouse page' 'guesthouse.html lacks: Mail assistant'
 
 echo "selftest: $n planted faults, $bad not caught"
 [ "$bad" -eq 0 ]

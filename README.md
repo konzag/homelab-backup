@@ -15,6 +15,14 @@ projects point at the same two pages.
 - Home page: https://konzag.github.io/homelab-backup/
 - Privacy policy: https://konzag.github.io/homelab-backup/privacy.html
 
+Since 7 November 2026 the site also holds the two pages of the **Guesthouse tools** of the family business:
+**Guesthouse bookings** (the booking app writes the stays into a calendar it creates, scope calendar.app.created) and
+**Mail assistant** (being built: labels, archive and drafts in the business Gmail with gmail.modify, never sending;
+invoice copies with drive.file; reminders with calendar.app.created). Their Google Cloud projects point at:
+
+- Home page: https://konzag.github.io/homelab-backup/guesthouse.html
+- Privacy policy: https://konzag.github.io/homelab-backup/guesthouse-privacy.html
+
 The pages hold no names, email addresses or other personal data, load nothing from anywhere and set no cookies.
 Run both checks before every push (Git Bash or Linux):
 

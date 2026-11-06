@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Guesthouse tools</title>
+<style>
+:root { color-scheme: light dark; --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --link: #0b57d0; --line: #d1d9e0; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --link: #7cacf8; --line: #3d444d; } }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 16px 3rem; }
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 1rem; }
+h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
+a { color: var(--link); }
+footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+<h1>Guesthouse tools</h1>
+<p>Two private tools of one small family business, a guesthouse with a taverna, use Google APIs. Only the owner of
+the business uses them, with the business's own Google accounts. They are not offered to anyone else.</p>
+
+<h2>Guesthouse bookings</h2>
+<p>Guesthouse bookings is the booking book of the guesthouse: the owner keeps the stays (room, dates, guests) in it, on
+the owner's own server. With the owner's consent it also writes one event per stay into a calendar of its own in the
+owner's Google Calendar, so that the owner sees the bookings on the phone.</p>
+<ul>
+<li>Google Calendar, only the calendars this app creates: it makes one secondary calendar and adds, changes and
+removes its own events there.</li>
+</ul>
+<p>It cannot see the owner's other calendars or events. It shares nothing with anyone.</p>
+
+<h2>Mail assistant</h2>
+<p>Mail assistant (being built) sorts the business mailbox for the owner: it adds labels, archives newsletters and
+writes reply drafts that the owner reads, edits and sends himself. It never sends an email. It keeps a copy of the
+invoices that arrive by email and reminds the owner of payments and table bookings.</p>
+<ul>
+<li>Gmail: to read the business mailbox, add and remove its own labels, archive newsletters and create drafts. It
+never sends, forwards or deletes mail and never changes the mailbox settings.</li>
+<li>Google Drive, only the files this tool creates: the copies of the invoices received by email.</li>
+<li>Google Calendar, only the calendars this tool creates: the payment and table reminders.</li>
+</ul>
+<p>The sorting and the drafts are made by a language model that runs on the owner's own computers: no mail text is
+sent to any outside AI service. It shares nothing with anyone.</p>
+
+<h2>Privacy</h2>
+<p>Read the <a href="guesthouse-privacy.html">privacy policy</a> of both tools.</p>
+
+<h2>Removing access</h2>
+<p>Each tool's access can be removed at any time in the Google Account, under
+<a href="https://myaccount.google.com/connections">Third-party apps and services</a>.</p>
+
+<footer>Guesthouse tools. No cookies, no analytics, no ads. Also by the same family: <a href="./">Homelab tools</a>.</footer>
+</main>
+</body>
+</html>

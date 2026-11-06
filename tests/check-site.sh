@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# tests/check-site.sh [DIR] - checks the site in DIR (default: the repository root). Fails on: a missing page, head
+# tests/check-site.sh [DIR] - checks the site in DIR (default: the repository root): the Homelab tools pages and the
+# Guesthouse tools pages (guesthouse.html, guesthouse-privacy.html, since 2026-11-07). Fails on: a missing page, head
 # element or .nojekyll; a missing link between the pages; a statement missing from the privacy policy; an email
 # address or a phone number; a script, image, style or frame loaded from anywhere; a plain http link; a non-ASCII byte.
 # All checks run and every failure is listed. tests/selftest.sh proves each check catches its fault.
 set -uo pipefail
 
 dir=${1:-"$(cd "$(dirname "$0")/.." && pwd)"}
-pages=(index.html privacy.html)
+pages=(index.html privacy.html guesthouse.html guesthouse-privacy.html)
 fails=0
 fail() { echo "FAIL $*"; fails=$((fails + 1)); }
 has() { [ -f "$dir/$1" ] && grep -qiF -e "$2" "$dir/$1" || fail "$1 lacks: $2"; }
@@ -29,6 +30,21 @@ for s in 'gmail.readonly' 'drive.file' 'calendar.app.created' 'Limited Use' 'htt
          'not shared' 'no cookies' 'https://myaccount.google.com/connections' 'Last updated:'; do
     has privacy.html "$s"
 done
+
+# the guesthouse home page names both of its tools and links to its policy; the policy names both and links back
+has guesthouse.html '<h1>Guesthouse tools</h1>'
+for t in 'Guesthouse bookings' 'Mail assistant'; do has guesthouse.html "$t"; has guesthouse-privacy.html "$t"; done
+has guesthouse.html 'href="guesthouse-privacy.html"'
+has guesthouse-privacy.html 'href="guesthouse.html"'
+for s in 'gmail.modify' 'drive.file' 'calendar.app.created' 'Limited Use' 'https://developers.google.com/terms/api-services-user-data-policy' \
+         'not shared' 'no cookies' 'never sends' 'outside AI service' 'https://myaccount.google.com/connections' 'Last updated:'; do
+    has guesthouse-privacy.html "$s"
+done
+# each policy names only its own Gmail scope
+if [ -f "$dir/guesthouse-privacy.html" ] && grep -qF 'gmail.readonly' "$dir/guesthouse-privacy.html"; then
+    fail 'guesthouse-privacy.html names gmail.readonly'
+fi
+if [ -f "$dir/privacy.html" ] && grep -qF 'gmail.modify' "$dir/privacy.html"; then fail 'privacy.html names gmail.modify'; fi
 
 # no personal data, plain ASCII
 for f in "${pages[@]}" README.md; do
